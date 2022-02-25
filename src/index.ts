@@ -5,8 +5,14 @@ const typeDefs = gql`
     message: String
   }
 
+  type Friend {
+    name: String!
+    age: Int
+  }
+
   type Query {
     helloWorld: hello
+    friends: [Friend!]
   }
 `;
 
@@ -16,6 +22,17 @@ const resolvers = {
       return {
         message: "hello world",
       };
+    },
+    friends: () => {
+      return [
+        {
+          name: "Bob",
+          age: 24,
+        },
+        {
+          name: "Mike",
+        },
+      ];
     },
   },
 };
