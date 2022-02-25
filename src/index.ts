@@ -1,4 +1,5 @@
 import { ApolloServer, gql } from "apollo-server";
+import { products } from "./mockData";
 
 const typeDefs = gql`
   type hello {
@@ -10,9 +11,20 @@ const typeDefs = gql`
     age: Int
   }
 
+  type Product {
+    id: String!
+    name: String!
+    description: String!
+    quantity: Int!
+    price: Float!
+    image: String
+    onSale: Boolean!
+  }
+
   type Query {
     helloWorld: hello
     friends: [Friend!]
+    products: [Product!]!
   }
 `;
 
@@ -33,6 +45,9 @@ const resolvers = {
           name: "Mike",
         },
       ];
+    },
+    products: () => {
+      return products;
     },
   },
 };
