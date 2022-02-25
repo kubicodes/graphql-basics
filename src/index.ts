@@ -25,6 +25,7 @@ const typeDefs = gql`
     helloWorld: hello
     friends: [Friend!]
     products: [Product!]!
+    product(id: String!): Product
   }
 `;
 
@@ -48,6 +49,9 @@ const resolvers = {
     },
     products: () => {
       return products;
+    },
+    product: (_: unknown, args: Record<string, unknown>) => {
+      return products.find((product) => product.id === args.id);
     },
   },
 };
