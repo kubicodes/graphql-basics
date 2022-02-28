@@ -1,5 +1,5 @@
 import { ApolloServer, gql } from "apollo-server";
-import { products } from "./mockData";
+import { categories, products } from "./mockData";
 
 const typeDefs = gql`
   type hello {
@@ -19,6 +19,7 @@ const typeDefs = gql`
     price: Float!
     image: String
     onSale: Boolean!
+    category: Category
   }
 
   type Query {
@@ -26,6 +27,13 @@ const typeDefs = gql`
     friends: [Friend!]
     products: [Product!]!
     product(id: String!): Product
+    category(id: String!): Category
+  }
+
+  type Category {
+    id: String!
+    name: String!
+    products: [Product!]!
   }
 `;
 
@@ -52,6 +60,20 @@ const resolvers = {
     },
     product: (_: unknown, args: Record<string, unknown>) => {
       return products.find((product) => product.id === args.id);
+    },
+    category: (_: unknown, args: Record<string, unknown>) => {
+      return categories.find((category) => category.id === args.id);
+    },
+  },
+  //Resolve Non Scalar Types of a Schema
+  Category: {
+    products: (parent: Record<string, unknown>) => {
+      return products.filter((product) => product.categoryId === parent.id);
+    },
+  },
+  Product: {
+    category: (parent: Record<string, unknown>) => {
+      return categories.find((category) => category.id === parent.categoryId);
     },
   },
 };
