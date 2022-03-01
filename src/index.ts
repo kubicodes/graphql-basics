@@ -1,4 +1,5 @@
 import { ApolloServer } from "apollo-server";
+import { categories, products } from "./mockData";
 import { Category } from "./resolvers/category";
 import { Product } from "./resolvers/product";
 import { Query } from "./resolvers/query";
@@ -12,6 +13,10 @@ const main = async () => {
       //Resolve Non Scalar Types of a Schema
       Category,
       Product,
+    },
+    context: {
+      categories,
+      products,
     },
   });
 

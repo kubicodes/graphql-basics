@@ -1,7 +1,12 @@
-import { categories } from "../mockData";
-
 export const Product = {
-  category: (parent: Record<string, unknown>) => {
-    return categories.find((category) => category.id === parent.categoryId);
+  category: (
+    parent: Record<string, any>,
+    _: unknown,
+    context: Record<string, any>
+  ) => {
+    const { categories } = context;
+    return categories.find(
+      (category: Record<string, any>) => category.id === parent.categoryId
+    );
   },
 };
