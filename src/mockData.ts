@@ -99,3 +99,21 @@ export const categories = [
     name: "Sports",
   },
 ];
+
+export const ratings = [
+  {
+    id: "1",
+    rating: "5",
+    productId: "53a0724c-a416-4cac-ae45-bfaedce1f147",
+  },
+  {
+    id: "2",
+    rating: "3",
+    productId: "53a0724c-a416-4cac-ae45-bfaedce1f147",
+  },
+  {
+    id: "3",
+    rating: "4",
+    productId: "53a0724c-a416-4cac-ae45-bfaedce1f147",
+  },
+];

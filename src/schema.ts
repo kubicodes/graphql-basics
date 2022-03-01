@@ -11,6 +11,12 @@ export const typeDefs = gql`
     age: Int
   }
 
+  type Rating {
+    id: String!
+    rating: String!
+    productId: String!
+  }
+
   type Product {
     id: String!
     name: String!
@@ -20,6 +26,7 @@ export const typeDefs = gql`
     image: String
     onSale: Boolean!
     category: Category
+    ratings: [Rating]
   }
 
   type Query {
