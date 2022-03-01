@@ -32,7 +32,7 @@ export const typeDefs = gql`
   type Query {
     helloWorld: hello
     friends: [Friend!]
-    products: [Product!]!
+    products(filter: ProductFiltersInput): [Product!]!
     product(id: String!): Product
     category(id: String!): Category
   }
@@ -41,5 +41,9 @@ export const typeDefs = gql`
     id: String!
     name: String!
     products: [Product!]!
+  }
+
+  input ProductFiltersInput {
+    onSale: Boolean
   }
 `;

@@ -17,8 +17,16 @@ export const Query = {
       },
     ];
   },
-  products: () => {
-    return products;
+  products: (_: any, args: Record<string, any>) => {
+    let filteredProducts;
+
+    if (args.filter.onSale) {
+      filteredProducts = products.filter(
+        (product: Record<string, any>) => product.onSale === true
+      );
+    }
+
+    return filteredProducts ?? products;
   },
   product: (_: unknown, args: Record<string, unknown>) => {
     return products.find((product) => product.id === args.id);
