@@ -28,6 +28,15 @@ export const typeDefs = gql`
     category: Category
     ratings: [Rating]
   }
+  type Category {
+    id: String!
+    name: String!
+    products: [Product!]!
+  }
+
+  input ProductFiltersInput {
+    onSale: Boolean
+  }
 
   type Query {
     helloWorld: hello
@@ -37,13 +46,11 @@ export const typeDefs = gql`
     category(id: String!): Category
   }
 
-  type Category {
-    id: String!
+  input AddCatgoryInput {
     name: String!
-    products: [Product!]!
   }
 
-  input ProductFiltersInput {
-    onSale: Boolean
+  type Mutation {
+    addCategory(input: AddCatgoryInput!): Category
   }
 `;
